@@ -1,27 +1,27 @@
-import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
+import { useState } from 'react';
+import { Route, Router } from "wouter";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
+import NotFound from "@/pages/not-found";
 
-function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
+const queryClient = new QueryClient();
 
 function App() {
+  const [location, setLocation] = useState(window.location.pathname);
+
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
+      <Router>
+        <div className="min-h-screen bg-background">
+          <Route path="/" component={Home} />
+          <Route path="/404" component={NotFound} />
+          <Route>
+            {() => <NotFound />}
+          </Route>
+        </div>
         <Toaster />
-        <Router />
-      </TooltipProvider>
+      </Router>
     </QueryClientProvider>
   );
 }
