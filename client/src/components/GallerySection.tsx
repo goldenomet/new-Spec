@@ -11,7 +11,7 @@ const GallerySection: React.FC = () => {
       alt: "HSE professionals in meeting"
     },
     {
-      src: "src/assets/training.jpg",
+      src: "https://images.unsplash.com/photo-1581093196277-9f597a237631?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80",
       alt: "Environmental assessment at industrial site"
     },
     {
